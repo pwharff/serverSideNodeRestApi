@@ -17,9 +17,11 @@ router.get('/', function (ctx, next) {
 router.get('/time/:time', ctx => {
   const time = ctx.params.time
 
+  console.log(db.get('user.format').value())
+
   if (isNaN(time))
   {
-    const mtime = moment(time, 'MMMM DD, YYYY')
+    const mtime = moment(time, db.get('user.format').value())
     ctx.body = {
       unixTime: mtime.isValid() ? parseInt(mtime.format('X')) : null,
       naturalTime: mtime.isValid() ? time : null
@@ -29,7 +31,7 @@ router.get('/time/:time', ctx => {
 
     ctx.body = {
       unixTime: parseInt(time),
-      naturalTime : parsedTime.format('MMMM DD, YYYY')
+      naturalTime : parsedTime.format(db.get('user.format').value())
     }
   }
 })

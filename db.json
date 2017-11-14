@@ -1,6 +1,6 @@
 {
   "user": {
     "name": "Bab the Bob",
-    "format": "MMMM DD, YYyy"
+    "format": "MMMM DD YYYY"
   }
 }
